@@ -19,8 +19,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.gelgitsepeti.adapter.CategoryAdapter;
 import com.example.gelgitsepeti.adapter.CouponAdapter;
 import com.example.gelgitsepeti.databinding.FragmentHomeBinding;
+import com.example.gelgitsepeti.model.Category;
 import com.example.gelgitsepeti.model.Coupon;
 
 import java.util.ArrayList;
@@ -127,6 +129,26 @@ public class HomeFragment extends Fragment {
             }
         };
         autoScrollHandler.postDelayed(autoScrollRunnable, AUTO_SCROLL_INTERVAL);
+
+        // --- 5. Yemek kategorileri setup ---
+        List<Category> categories = new ArrayList<>();
+        categories.add(new Category("Tatlı",    R.drawable.img_tatli));
+        categories.add(new Category("Pizza",    R.drawable.img_pizza));
+        categories.add(new Category("Döner",    R.drawable.img_doner));
+        categories.add(new Category("Salata",   R.drawable.img_salata));
+// … istediğin diğer kategoriler …
+
+        CategoryAdapter catAdapter = new CategoryAdapter(categories, category -> {
+            // kategori tıklanınca yapılacak (örn. filtre uygula)
+        });
+        LinearLayoutManager catLm = new LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+        );
+        binding.rvCategories.setLayoutManager(catLm);
+        binding.rvCategories.setAdapter(catAdapter);
+
     }
 
     private List<Coupon> loadDummyCoupons() {
