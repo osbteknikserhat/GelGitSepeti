@@ -1,9 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.GelGitSepeti" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <!--
+      Uygulamanın tek teması: Material3 Light, ActionBar yok
+    -->
+    <style name="Theme.GelGitSepeti" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Uygulama ana rengi, ihtiyaç varsa ekleyin -->
+        <!-- <item name="colorPrimary">@color/your_primary</item> -->
+
+        <!-- Tüm ekranların beyaz arka planı -->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+
+        <!-- Durum çubuğu (status bar) ayarları -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="Theme.GelGitSepeti" parent="Base.Theme.GelGitSepeti" />
 </resources>
