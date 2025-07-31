@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/filter_vegetarian"
+        android:title="Vejetaryen" />
+    <item android:id="@+id/filter_gluten_free"
+        android:title="Glutensiz" />
+    <item android:id="@+id/filter_vegan"
+        android:title="Vegan" />
+</menu>

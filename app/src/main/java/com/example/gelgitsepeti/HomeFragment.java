@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 
 import com.example.gelgitsepeti.adapter.CategoryAdapter;
 import com.example.gelgitsepeti.adapter.CouponAdapter;
@@ -75,6 +76,21 @@ public class HomeFragment extends Fragment {
         binding.topNavBar.ivCart.setOnClickListener(v ->
                 navController.navigate(R.id.action_homeFragment_to_cartFragment)
         );
+
+        // SIRALA butonu—sadece menüyü göster
+        binding.btnSort.setOnClickListener(v -> {
+            PopupMenu menu = new PopupMenu(requireContext(), v);
+            menu.getMenuInflater().inflate(R.menu.menu_sort, menu.getMenu());
+            menu.show();
+        });
+
+        // FİLTRELE butonu—sadece menüyü göster
+        binding.btnFilter.setOnClickListener(v -> {
+            PopupMenu menu = new PopupMenu(requireContext(), v);
+            menu.getMenuInflater().inflate(R.menu.menu_filter, menu.getMenu());
+            menu.show();
+        });
+
 
         // Kupon listesi hazırlığı
         List<Coupon> couponList = loadDummyCoupons();
