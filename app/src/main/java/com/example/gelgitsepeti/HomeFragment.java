@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,9 +23,11 @@ import android.widget.PopupMenu;
 
 import com.example.gelgitsepeti.adapter.CategoryAdapter;
 import com.example.gelgitsepeti.adapter.CouponAdapter;
+import com.example.gelgitsepeti.adapter.MealAdapter;
 import com.example.gelgitsepeti.databinding.FragmentHomeBinding;
 import com.example.gelgitsepeti.model.Category;
 import com.example.gelgitsepeti.model.Coupon;
+import com.example.gelgitsepeti.model.Meal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,6 +168,20 @@ public class HomeFragment extends Fragment {
         binding.rvCategories.setLayoutManager(catLm);
         binding.rvCategories.setAdapter(catAdapter);
 
+        // 6) Yemekler RecyclerView
+        List<Meal> meals = loadDummyMeals(); // kendi modelin, listeni oluştur
+        MealAdapter mealAdapter = new MealAdapter(meals);
+
+        // spanCount = 2 => iki satır
+        GridLayoutManager gridLm = new GridLayoutManager(
+                requireContext(),
+                2,                                   // 2 satır (span)
+                GridLayoutManager.HORIZONTAL,       // yatay scroll
+                false
+        );
+        binding.rvMeals.setLayoutManager(gridLm);
+        binding.rvMeals.setAdapter(mealAdapter);
+
     }
 
     private List<Coupon> loadDummyCoupons() {
@@ -202,6 +219,19 @@ public class HomeFragment extends Fragment {
                     : R.drawable.dot_inactive);
         }
     }
+
+    private List<Meal> loadDummyMeals() {
+        List<Meal> meals = new ArrayList<>();
+        meals.add(new Meal("Ayran",     "30 TL",  R.drawable.img_ayran));
+        meals.add(new Meal("Fanta",     "60 TL",  R.drawable.img_fanta));
+        meals.add(new Meal("Izgara Tavuk","270 TL",R.drawable.img_kanat));
+        meals.add(new Meal("Baklava",   "150 TL", R.drawable.img_baklava));
+        meals.add(new Meal("Izgara Somon","300 TL",R.drawable.img_somon));
+        meals.add(new Meal("Kadayıf",   "120 TL", R.drawable.img_kadayif));
+        // ... daha fazla örnek ekleyebilirsiniz
+        return meals;
+    }
+
 
     @Override
     public void onDestroyView() {
